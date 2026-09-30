@@ -5,11 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HumanBenchmark"
         xmlns:vm="clr-namespace:HumanBenchmark.ViewModels.Shell"
+        xmlns:sequence ="clr-namespace:HumanBenchmark.Views.Sequence"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:MainShellViewModel}"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#FF2B87D1">
-        <TextBlock HorizontalAlignment="Left" Margin="25,50,3,0" TextWrapping="Wrap" Text="{Binding Title, FallbackValue=En testrubrik}" VerticalAlignment="Top" FontSize="50" Foreground="GhostWhite" />
-        <Button Content="Start" HorizontalAlignment="Left" Margin="250,204,0,0" VerticalAlignment="Top" Height="50" Width="100" Background="#F5C242" BorderBrush="#DAA520" BorderThickness="1" FontWeight="SemiBold" Command="{Binding ChangeTitleCommand}" CommandParameter="Nya rubriken"/>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+       
+        <ContentControl Grid.Row="1" Content="{Binding CurrentGame.Screen}"/>
     </Grid>
 </Window>

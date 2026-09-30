@@ -2,8 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:HumanBenchmark"
+             xmlns:sequence="clr-namespace:HumanBenchmark.ViewModels.Sequence"
+             xmlns:sequenceView="clr-namespace:HumanBenchmark.Views.Sequence"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate DataType="{x:Type sequence:SequenceBoardViewModel}">
+            <sequenceView:SequenceBoardView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>
