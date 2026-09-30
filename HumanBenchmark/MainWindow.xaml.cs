@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using HumanBenchmark.ViewModels.Shell;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ namespace HumanBenchmark
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainShellViewModel();
         }
     }
 }
