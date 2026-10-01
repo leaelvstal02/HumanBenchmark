@@ -18,15 +18,19 @@ public class SequenceBoardViewModel
     public string Title { get; set; } = "Följ sekvensen";
     public ObservableCollection<PadViewModel> Pads { get; private set; } = new();
 
+    public event Action? Mistake;
+
     public SequenceBoardViewModel()
     {
         ConfigurePads();
     }
 
-    public async void StartNewGame()
+    public async Task StartNewGameAsync()
     {
+        _playerProgress = 0;
+        _sequence.Clear();
         AddRandomToSequence();
-        await ShowSequence(600);
+        await ShowSequence();
     }
 
     private void AddRandomToSequence()
@@ -35,13 +39,14 @@ public class SequenceBoardViewModel
         _sequence.Add(next);
     }
 
-    private async Task ShowSequence(int delay = 350)
+    private async Task ShowSequence()
     {
         var snapshot = _sequence.ToArray();
         foreach (var index in snapshot)
         {
             await ToggleButton(index);
         }
+        _playerProgress = 0;
     }
 
     private async Task ToggleButton(int index, int delay=350)
@@ -68,11 +73,12 @@ public class SequenceBoardViewModel
             if (_playerProgress==_sequence.Count)
             {
                 await OnPlayerCompletedAsync();
+                await Task.Delay(500);
             }
         }
         else
         {
-
+            Mistake?.Invoke();
         }
     }
 
