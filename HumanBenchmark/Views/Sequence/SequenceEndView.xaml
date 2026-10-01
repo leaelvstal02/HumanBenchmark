@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="HumanBenchmark.Views.Sequence.SequenceEndView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HumanBenchmark.Views.Sequence"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#2F80D1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            FontSize="40"
+            FontWeight="SemiBold"
+            Foreground="White"
+            Text="Sequence Game"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock 
+            Text="Level:"
+            Foreground="White"
+            Margin="5"
+            FontSize="70"/>
+            <TextBlock 
+            Text="{Binding Level, FallbackValue=10}"
+            Foreground="White"
+            Margin="5"
+            FontSize="70"/>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button 
+                Grid.Row="2"
+                Height="50"
+                Margin="5"
+                Padding="20,10"
+                HorizontalAlignment="Center"
+                Background="#F5C242"
+                BorderBrush="#DAA520"
+                Command="{Binding SaveScoreCommand}"
+                Content="Spara poäng"
+                FontWeight="SemiBold"
+                Foreground="#1D2557"/>
+            <Button 
+                Height="50"
+                Margin="5"
+                Padding="20,10"
+                HorizontalAlignment="Center"
+                Background="LightGray"
+                BorderBrush="LightBlue"
+                Command="{Binding RestartCommand}"
+                Content="Pröva Igen"
+                FontWeight="SemiBold"
+                Foreground="#1D2557"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

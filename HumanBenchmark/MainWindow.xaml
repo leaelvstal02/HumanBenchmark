@@ -8,7 +8,10 @@
         xmlns:sequence ="clr-namespace:HumanBenchmark.Views.Sequence"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:MainShellViewModel}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Height="450" 
+        Width="800">
+    <!--WindowState="Maximized"-->
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
