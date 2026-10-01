@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using HumanBenchmark.Commands;
 using HumanBenchmark.Enums;
+using HumanBenchmark.ViewModels.Common;
 using PropertyChanged;
 
 namespace HumanBenchmark.ViewModels.Sequence;
 
 [AddINotifyPropertyChangedInterface]
 
-public class SequenceBoardViewModel
+public class SequenceBoardViewModel : ISupportPadInput
 {
     private List<int> _sequence = new();
 
@@ -21,10 +24,19 @@ public class SequenceBoardViewModel
 
     public FeedbackState Feedback { get; set; } = FeedbackState.Neutral;
 
+    public ICommand PressPadIndexCommand { get; }
     public event Action<int>? Mistake;
 
     public SequenceBoardViewModel()
     {
+        PressPadIndexCommand = new RelayCommand(parameter => 
+        {
+            if (parameter is null)
+            {
+                return;
+            }
+            OnButtonClicked(Convert.ToInt32(parameter));
+        });
         ConfigurePads();
     }
 

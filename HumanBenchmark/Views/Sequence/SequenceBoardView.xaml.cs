@@ -21,6 +21,12 @@ namespace HumanBenchmark.Views.Sequence
         public SequenceBoardView()
         {
             InitializeComponent();
+            Loaded += SequenceBoardView_Loaded;
+        }
+
+        private void SequenceBoardView_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Keyboard.Focus(this);
         }
     }
 }

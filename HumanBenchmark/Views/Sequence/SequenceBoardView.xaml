@@ -9,6 +9,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=vm:SequenceBoardViewModel}">
+    <UserControl.InputBindings>
+        <!--Övre raden-->
+        <KeyBinding 
+            Key="NumPad7"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="0"/>
+        <KeyBinding 
+            Key="NumPad8"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="1"/>
+        <KeyBinding 
+            Key="NumPad9"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="2"/>
+        <!--Mitten-->
+        <KeyBinding 
+            Key="NumPad4"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="3"/>
+        <KeyBinding 
+            Key="NumPad5"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="4"/>
+        <KeyBinding 
+            Key="NumPad6"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="5"/>
+        <!--Nedre raden-->
+        <KeyBinding 
+            Key="NumPad3"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="6"/>
+        <KeyBinding 
+            Key="NumPad2"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="7"/>
+        <KeyBinding 
+            Key="NumPad1"
+            Command="{Binding PressPadIndexCommand}"
+            CommandParameter="8"/>
+    </UserControl.InputBindings>
     <UserControl.Resources>
         <converters:LitToBrushConverter x:Key="LitToBrushConverter"/>
         <converters:FeedbackToBrushConverter x:Key="FeedbackToBrushConverter"/>
