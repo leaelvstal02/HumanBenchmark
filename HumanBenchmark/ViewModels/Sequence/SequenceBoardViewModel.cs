@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using HumanBenchmark.Enums;
 using PropertyChanged;
 
 namespace HumanBenchmark.ViewModels.Sequence;
@@ -18,7 +19,9 @@ public class SequenceBoardViewModel
     public string Title { get; set; } = "Följ sekvensen";
     public ObservableCollection<PadViewModel> Pads { get; private set; } = new();
 
-    public event Action? Mistake;
+    public FeedbackState Feedback { get; set; } = FeedbackState.Neutral;
+
+    public event Action<int>? Mistake;
 
     public SequenceBoardViewModel()
     {
@@ -66,26 +69,30 @@ public class SequenceBoardViewModel
 
     private async void OnButtonClicked(int index)
     {
-        await ToggleButton(index);
+        await ToggleButton(index, 100);
         if (index == _sequence[_playerProgress])
         {
             _playerProgress++;
-            if (_playerProgress==_sequence.Count)
+            if (_playerProgress == _sequence.Count)
             {
                 await OnPlayerCompletedAsync();
-                await Task.Delay(500);
+                await ShowSequence();
             }
         }
         else
         {
-            Mistake?.Invoke();
+            Feedback = FeedbackState.Wrong;
+            await Task.Delay(800);
+            Feedback = FeedbackState.Correct;
+            Mistake?.Invoke(_playerProgress);
         }
     }
 
     private async Task OnPlayerCompletedAsync()
     {
         AddRandomToSequence();
-        await ShowSequence();
-        await Task.Delay(800);
+        Feedback = FeedbackState.Finished;
+        await Task.Delay(500);
+        Feedback = FeedbackState.Neutral;
     }
 }

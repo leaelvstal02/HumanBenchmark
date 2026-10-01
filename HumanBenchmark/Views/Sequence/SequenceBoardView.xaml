@@ -11,6 +11,7 @@
              d:DataContext="{d:DesignInstance Type=vm:SequenceBoardViewModel}">
     <UserControl.Resources>
         <converters:LitToBrushConverter x:Key="LitToBrushConverter"/>
+        <converters:FeedbackToBrushConverter x:Key="FeedbackToBrushConverter"/>
 
         <!--<Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
@@ -36,7 +37,7 @@
             </Setter>
         </Style>-->
     </UserControl.Resources>
-    <Grid Background="#2F80D1">
+    <Grid Background="{Binding Feedback, Converter={StaticResource FeedbackToBrushConverter}, TargetNullValue=#2F80D1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
