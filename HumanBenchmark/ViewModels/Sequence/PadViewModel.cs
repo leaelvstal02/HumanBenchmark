@@ -12,6 +12,7 @@ namespace HumanBenchmark.ViewModels.Sequence;
 public class PadViewModel
 {
     public int Id { get; private set; }
+    public bool IsLit { get; set; }
     public ICommand ClickCommand { get; private set; }
     public PadViewModel(int id, Action<int> onClick)
     {

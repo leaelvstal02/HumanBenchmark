@@ -15,5 +15,6 @@ public class SequenceGameViewModel
     {
         ChangeTitleCommand = new RelayCommand(_ => Title = "Sequence game"); //(p => ChangeTitle(p?.ToString() ?? Title)); //?? är en if-sats som kollar om parametern är null
         Screen = GameViewModel;
+        GameViewModel.StartNewGame();
     }
 }
