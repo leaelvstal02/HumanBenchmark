@@ -4,10 +4,66 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HumanBenchmark.Views.Sequence"
+             xmlns:converters="clr-namespace:HumanBenchmark.Views.Converters"
+             xmlns:vm="clr-namespace:HumanBenchmark.ViewModels.Sequence"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=vm:SequenceBoardViewModel}">
+    <UserControl.Resources>
+        <converters:LitToBrushConverter x:Key="LitToBrushConverter"/>
+
+        <!--<Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Name="border"
+                            Padding="4,2"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="DarkGray"
+                            BorderThickness="0"
+                            CornerRadius="10"
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+    </UserControl.Resources>
     <Grid Background="#2F80D1">
-        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Margin="25,50,3,0" TextWrapping="Wrap" Text="{Binding Title, FallbackValue=En testrubrik}" VerticalAlignment="Top" FontSize="50" Foreground="GhostWhite" />
-        <!--<Button Content="Start" HorizontalAlignment="Left" Margin="250,204,0,0" VerticalAlignment="Top" Height="50" Width="100" Background="#F5C242" BorderBrush="#DAA520" BorderThickness="1" FontWeight="SemiBold" Command="{Binding ChangeTitleCommand}" CommandParameter="Nya rubriken"/>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" HorizontalAlignment="Left" Margin="25,2,3,0" TextWrapping="Wrap" Text="{Binding Title, FallbackValue=En testrubrik}" VerticalAlignment="Top" FontSize="50" Foreground="GhostWhite" />
+        <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Width="600" Height="600">
+                <ItemsControl ItemsSource="{Binding Pads}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3" Rows="3"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Margin" Value="12"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding ClickCommand}" Background="{Binding IsLit, Converter={StaticResource LitToBrushConverter}}"/>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>
